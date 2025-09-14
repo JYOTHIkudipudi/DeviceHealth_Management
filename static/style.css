@@ -1,0 +1,83 @@
+:root {
+  --bg: linear-gradient(180deg, #f0fbff, #eef6ff);
+  --header-start: #6dd5fa;
+  --header-end: #2980b9;
+  --text: #111827;
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg: linear-gradient(180deg, #0f1724, #071024);
+  --header-start: #0f1724;
+  --header-end: #0b8793;
+  --text: #e6eef6;
+  --card-bg: #0b1220;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Explicit modes if you want to toggle via class instead of data-theme */
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* UI Elements */
+.shiny-header {
+  background: linear-gradient(90deg, var(--header-start), var(--header-end));
+  color: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-radius: 0 0 12px 12px;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.card {
+  border-radius: 0.75rem;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+.card.border-danger,
+.card.border-warning,
+.card.border-success {
+  border-width: 2px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+
+.logo i {
+  color: #fff;
+}
+
+.badge {
+  font-size: 0.9em;
+}
+
+a {
+  color: inherit;
+}

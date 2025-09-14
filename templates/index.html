@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Dashboard</title>
+    <style>
+        .top-bar {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            gap: 20px;
+        }
+        .top-bar button {
+            color: #fff;
+            background: #444;
+            border: none;
+            padding: 8px 14px;
+            margin-right: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        .top-bar button:hover {
+            background: #555;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px;
+            border-radius: 6px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover { color: #000; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <button onclick="window.location.href='/export_csv'">Export All CSV</button>
+        <button onclick="openSettingsModal()">Settings</button>
+        <button onclick="window.location.href='/export_pdf'">Export PDF</button>
+    </div>
+    <h1>Device Dashboard</h1>
+    <ul>
+        {% for device in devices %}
+        <li>
+            <a href="/device/{{ device.id }}">{{ device.name }} ({{ device.id }})</a>
+            - <a href="/export/{{ device.id }}">Export CSV</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeSettingsModal()">&times;</span>
+        <h2>Edit Settings</h2>
+        <form method="POST" action="/update_settings">
+            Theme:
+            <select name="theme">
+                <option value="light" {% if settings.theme=="light" %}selected{% endif %}>Light</option>
+                <option value="dark" {% if settings.theme=="dark" %}selected{% endif %}>Dark</option>
+            </select>
+            <br><br>
+            Alert Email: <input type="email" name="alert_email" value="{{ settings.alert_email if settings.alert_email else '' }}">
+            <br><br>
+            Device Refresh Interval (sec): 
+            <input type="number" name="refresh_interval" min="1" max="60" value="{{ settings.refresh_interval if settings.refresh_interval else 2 }}">
+            <br><br>
+            <input type="submit" value="Save">
+        </form>
+      </div>
+    </div>
+    <script>
+        function openSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'block';
+        }
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById('settingsModal');
+            if (event.target == modal) modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+</head>
+<body>
+    <h1>Edit Settings</h1>
+    <form method="POST" action="/update_settings">
+        Theme:
+        <select name="theme">
+            <option value="light" {% if theme=="light" %}selected{% endif %}>Light</option>
+            <option value="dark" {% if theme=="dark" %}selected{% endif %}>Dark</option>
+        </select>
+        <input type="submit" value="Save">
+    </form>
+    <a href="/">Back to dashboard</a>
+</body>
+</html>
