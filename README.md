@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Device Health Realtime Dashboard v3 (Production-ready features)
 
 ## Added features
@@ -38,3 +39,6 @@
    ```bash
    docker compose up --build
    ```
+=======
+# DeviceHealth_Management
+>>>>>>> e7bf86abcd7a1dab30ecf67faa95e0c780aa0cbf
