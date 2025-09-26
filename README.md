@@ -1,5 +1,5 @@
 
-# Device Health Realtime Dashboard v3 (Production-ready features)
+# Device Health Realtime Dashboard  (Production-ready features)
 
 ## Added features
 1. **Email (SMTP) + SMS (Twilio placeholder) alert integration**. Configure SMTP and Twilio via environment variables.
@@ -27,16 +27,7 @@
    ```bash
    python app.py
    ```
-4. Open http://127.0.0.1:5000
 
-## Run with Docker
-1. Build and run:
-   ```bash
-   docker build -t device-dashboard .
-   docker run -p 5000:5000 -e ALERT_EMAIL_TO="you@example.com" device-dashboard
-   ```
-2. Or with docker-compose (set env in .env file):
-   ```bash
-   docker compose up --build
-   ```
+
+
 
